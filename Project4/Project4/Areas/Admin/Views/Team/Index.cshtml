@@ -1,0 +1,51 @@
+﻿@using Core.Models
+
+@model List<Team>
+@{
+    int count = 1;
+}
+<div class="container">
+    <h1>
+        Teams
+    </h1>
+    <a class="btn btn-info" asp-action="Create" asp-controller="Team" >Create</a>
+
+</div>
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">FullName</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Image</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@count</th>
+                        <td>@item.FullName</td>
+                        <td>@item.Position</td>
+                        <td>@item.Description</td>
+                        <td>
+                            <img width="100px" class="img-fluid" src="/Uploads/Team/@item.ImgUrl"></img>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" asp-action="Delete" asp-controller="Team" asp-route-id="@item.Id">Delete</a>
+                            <a class="btn btn-info" asp-action="Update" asp-controller="Team" asp-route-id="@item.Id">Update</a>
+                        </td>
+
+
+                    </tr>
+                    count++;
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
